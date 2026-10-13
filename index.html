@@ -101,6 +101,13 @@ h3{font:600 20px/1.3 var(--f-display);margin:0}
 .tier{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:2px}
 .tier .p{font:600 26px var(--f-display);font-variant-numeric:tabular-nums}
 .tier .c{font-size:14px;color:var(--muted)}
+.tier{cursor:text;transition:border-color .2s}
+.tier:hover,.tier:focus-within{border-color:var(--fire)}
+.pw{display:flex;align-items:baseline;gap:6px}
+input.p{width:5ch;min-width:0;background:transparent;border:none;border-bottom:1px dashed var(--dim);color:var(--ink);padding:0;font:600 26px var(--f-display);font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+input.p::-webkit-outer-spin-button,input.p::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input.p:focus{outline:none;border-bottom-color:var(--fire)}
+.pen{margin-left:auto;color:var(--dim);font-size:16px}
 @media (max-width:560px){.tiers{grid-template-columns:minmax(0,1fr)}}
 .calc{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:20px;align-items:start}
 @media (max-width:860px){.calc{grid-template-columns:minmax(0,1fr)}}
@@ -433,13 +440,14 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
     <div class="head">
       <span class="kicker">06 · Экономика</span>
       <h2>Подписка за каждую камеру</h2>
-      <p class="lead">Объект на 100 камер приносит 50 000 ₽ в месяц, 600 000 ₽ в год, при маржинальности 70–90%.</p>
+      <p class="lead" id="econLead">Объект на 100 камер приносит 50 000 ₽ в месяц, 600 000 ₽ в год, при маржинальности 70–90%.</p>
     </div>
     <div class="tiers">
-      <div class="tier"><span class="c">до 49 камер</span><span class="p">990 ₽</span><span class="c">за камеру в месяц</span></div>
-      <div class="tier"><span class="c">50–99 камер</span><span class="p">700 ₽</span><span class="c">за камеру в месяц</span></div>
-      <div class="tier"><span class="c">от 100 камер</span><span class="p">500 ₽</span><span class="c">за камеру в месяц</span></div>
+      <label class="tier"><span class="c">до 49 камер</span><span class="pw"><input class="p" type="number" id="t1" value="990" min="0" step="10" aria-label="Цена лицензии до 49 камер"><span class="p">₽</span><span class="pen" aria-hidden="true">✎</span></span><span class="c">за камеру в месяц</span></label>
+      <label class="tier"><span class="c">50–99 камер</span><span class="pw"><input class="p" type="number" id="t2" value="700" min="0" step="10" aria-label="Цена лицензии 50–99 камер"><span class="p">₽</span><span class="pen" aria-hidden="true">✎</span></span><span class="c">за камеру в месяц</span></label>
+      <label class="tier"><span class="c">от 100 камер</span><span class="pw"><input class="p" type="number" id="t3" value="500" min="0" step="10" aria-label="Цена лицензии от 100 камер"><span class="p">₽</span><span class="pen" aria-hidden="true">✎</span></span><span class="c">за камеру в месяц</span></label>
     </div>
+    <p class="hint" style="margin-top:-24px">Нажмите на цену, чтобы изменить её. Калькулятор ниже сразу пересчитается.</p>
 
     <div class="card">
       <span class="tag">Калькулятор объекта</span>
@@ -465,7 +473,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
               <input type="number" id="price" min="0" step="10" value="500">
               <label class="auto"><input type="checkbox" id="autoPrice" checked> по тарифу</label>
             </div>
-            <span class="hint" id="priceHint">Тариф: 990 ₽ до 49 камер, 700 ₽ от 50, 500 ₽ от 100. Впишите свою цену — тариф отключится.</span>
+            <span class="hint" id="priceHint">Цена берётся из тарифов выше. Впишите свою — тариф для этого расчёта отключится.</span>
           </div>
           <div class="f">
             <span class="lg">Срок владения</span>
@@ -608,7 +616,10 @@ function plan(c){
 function calc(){
   const c = Math.max(1, Math.round(+$('camsNum').value || 1));
   const p = plan(c), own = hw === 'own';
-  const tier = c >= 100 ? 500 : c >= 50 ? 700 : 990;
+  const tv = id => Math.max(0, +$(id).value || 0);
+  const tier = c >= 100 ? tv('t3') : c >= 50 ? tv('t2') : tv('t1');
+  const m100 = 100 * tv('t3');
+  $('econLead').textContent = 'Объект на 100 камер приносит ' + rub(m100) + ' в месяц, ' + rub(m100*12) + ' в год, при маржинальности 70–90%.';
   if ($('autoPrice').checked) $('price').value = tier;
   const price = Math.max(0, +$('price').value || 0);
   const licM = c*price, licY = licM*12;
@@ -635,6 +646,7 @@ document.querySelectorAll('#hw button').forEach(b => b.addEventListener('click',
 document.querySelectorAll('#hz button').forEach(b => b.addEventListener('click', () => { years = +b.dataset.y; document.querySelectorAll('#hz button').forEach(x => x.setAttribute('aria-pressed', x===b)); calc(); }));
 $('price').addEventListener('input', () => { $('autoPrice').checked = false; calc(); });
 $('autoPrice').addEventListener('change', calc);
+['t1','t2','t3'].forEach(id => $(id).addEventListener('input', () => { $('autoPrice').checked = true; calc(); }));
 calc();
 
 const links = [...document.querySelectorAll('.nav a')];
