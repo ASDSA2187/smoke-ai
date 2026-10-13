@@ -468,14 +468,6 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
             </div>
           </div>
           <div class="f">
-            <label for="price">Лицензия, ₽ за камеру в месяц</label>
-            <div class="cam">
-              <input type="number" id="price" min="0" step="10" value="500">
-              <label class="auto"><input type="checkbox" id="autoPrice" checked> по тарифу</label>
-            </div>
-            <span class="hint" id="priceHint">Цена берётся из тарифов выше. Впишите свою — тариф для этого расчёта отключится.</span>
-          </div>
-          <div class="f">
             <span class="lg">Срок владения</span>
             <div class="seg" id="hz">
               <button type="button" data-y="1" aria-pressed="false">1 год</button>
@@ -620,8 +612,7 @@ function calc(){
   const tier = c >= 100 ? tv('t3') : c >= 50 ? tv('t2') : tv('t1');
   const m100 = 100 * tv('t3');
   $('econLead').textContent = 'Объект на 100 камер приносит ' + rub(m100) + ' в месяц, ' + rub(m100*12) + ' в год, при маржинальности 70–90%.';
-  if ($('autoPrice').checked) $('price').value = tier;
-  const price = Math.max(0, +$('price').value || 0);
+  const price = tier;
   const licM = c*price, licY = licM*12;
   const hwMid = own ? 0 : (p.lo+p.hi)/2;
   const oldC = c*AICAM, newC = hwMid + licY*years;
@@ -644,9 +635,7 @@ $('camsRange').addEventListener('input', e => { $('camsNum').value = e.target.va
 $('camsNum').addEventListener('input', e => { $('camsRange').value = Math.min(500, Math.max(1, +e.target.value || 1)); calc(); });
 document.querySelectorAll('#hw button').forEach(b => b.addEventListener('click', () => { hw = b.dataset.v; document.querySelectorAll('#hw button').forEach(x => x.setAttribute('aria-pressed', x===b)); calc(); }));
 document.querySelectorAll('#hz button').forEach(b => b.addEventListener('click', () => { years = +b.dataset.y; document.querySelectorAll('#hz button').forEach(x => x.setAttribute('aria-pressed', x===b)); calc(); }));
-$('price').addEventListener('input', () => { $('autoPrice').checked = false; calc(); });
-$('autoPrice').addEventListener('change', calc);
-['t1','t2','t3'].forEach(id => $(id).addEventListener('input', () => { $('autoPrice').checked = true; calc(); }));
+['t1','t2','t3'].forEach(id => $(id).addEventListener('input', calc));
 calc();
 
 const links = [...document.querySelectorAll('.nav a')];
