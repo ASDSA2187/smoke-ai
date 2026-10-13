@@ -110,6 +110,9 @@ h3{font:600 20px/1.3 var(--f-display);margin:0}
 .cam{display:flex;gap:12px;align-items:center}
 .cam input[type=range]{flex:1;min-width:0;accent-color:var(--fire)}
 .cam input[type=number]{width:90px;font:500 17px var(--f-mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.auto{display:flex;align-items:center;gap:8px;font:500 14px var(--f-body);color:var(--muted);white-space:nowrap;cursor:pointer}
+.auto input{accent-color:var(--fire);width:18px;height:18px}
+.hint{font-size:13px;color:var(--dim);line-height:1.4}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px}
 .seg button{font:500 14px var(--f-body);padding:9px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--fire);border-color:var(--fire);color:#1A0E06}
@@ -457,6 +460,14 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
             </div>
           </div>
           <div class="f">
+            <label for="price">Лицензия, ₽ за камеру в месяц</label>
+            <div class="cam">
+              <input type="number" id="price" min="0" step="10" value="500">
+              <label class="auto"><input type="checkbox" id="autoPrice" checked> по тарифу</label>
+            </div>
+            <span class="hint" id="priceHint">Тариф: 990 ₽ до 49 камер, 700 ₽ от 50, 500 ₽ от 100. Впишите свою цену — тариф отключится.</span>
+          </div>
+          <div class="f">
             <span class="lg">Срок владения</span>
             <div class="seg" id="hz">
               <button type="button" data-y="1" aria-pressed="false">1 год</button>
@@ -597,7 +608,9 @@ function plan(c){
 function calc(){
   const c = Math.max(1, Math.round(+$('camsNum').value || 1));
   const p = plan(c), own = hw === 'own';
-  const price = c >= 100 ? 500 : c >= 50 ? 700 : 990;
+  const tier = c >= 100 ? 500 : c >= 50 ? 700 : 990;
+  if ($('autoPrice').checked) $('price').value = tier;
+  const price = Math.max(0, +$('price').value || 0);
   const licM = c*price, licY = licM*12;
   const hwMid = own ? 0 : (p.lo+p.hi)/2;
   const oldC = c*AICAM, newC = hwMid + licY*years;
@@ -606,8 +619,8 @@ function calc(){
   $('kLic').textContent = rub(licM) + '/мес';
   $('kLicS').textContent = price + ' ₽ × ' + c + ' камер';
   $('kRev').textContent = fmt(licY);
-  const pay = DEV / (licM*MARGIN);
-  $('kRevS').textContent = 'MVP окупится за ' + (pay < 1 ? 'меньше месяца' : pay.toLocaleString('ru-RU',{maximumFractionDigits:1}) + ' мес');
+  const pay = licM > 0 ? DEV / (licM*MARGIN) : Infinity;
+  $('kRevS').textContent = !isFinite(pay) ? 'укажите цену лицензии' : 'MVP окупится за ' + (pay < 1 ? 'меньше месяца' : pay.toLocaleString('ru-RU',{maximumFractionDigits:1}) + ' мес');
   const max = Math.max(oldC, newC, 1);
   $('bO').style.width = (oldC/max*100) + '%'; $('bN').style.width = (newC/max*100) + '%';
   $('vO').textContent = fmt(oldC); $('vN').textContent = fmt(newC);
@@ -620,6 +633,8 @@ $('camsRange').addEventListener('input', e => { $('camsNum').value = e.target.va
 $('camsNum').addEventListener('input', e => { $('camsRange').value = Math.min(500, Math.max(1, +e.target.value || 1)); calc(); });
 document.querySelectorAll('#hw button').forEach(b => b.addEventListener('click', () => { hw = b.dataset.v; document.querySelectorAll('#hw button').forEach(x => x.setAttribute('aria-pressed', x===b)); calc(); }));
 document.querySelectorAll('#hz button').forEach(b => b.addEventListener('click', () => { years = +b.dataset.y; document.querySelectorAll('#hz button').forEach(x => x.setAttribute('aria-pressed', x===b)); calc(); }));
+$('price').addEventListener('input', () => { $('autoPrice').checked = false; calc(); });
+$('autoPrice').addEventListener('change', calc);
 calc();
 
 const links = [...document.querySelectorAll('.nav a')];
