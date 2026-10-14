@@ -243,6 +243,21 @@ input.p:focus{outline:none;border-bottom-color:var(--fire)}
 .hw-price span{font:600 22px var(--f-display);font-variant-numeric:tabular-nums}
 .hw-price small{font-size:13px;color:var(--dim)}
 
+/* region card */
+.reg{gap:18px}
+.reg-head{display:flex;flex-direction:column;gap:8px}
+.reg-head h3{font:600 clamp(19px,2.2vw,24px)/1.3 var(--f-display);text-wrap:balance}
+.reg-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media (max-width:860px){.reg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.reg-grid{grid-template-columns:minmax(0,1fr)}}
+.rk{background:var(--bg);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.rk .n{font:600 26px/1.1 var(--f-display);color:var(--fire);font-variant-numeric:tabular-nums}
+.rk .l{font-size:13.5px;color:var(--muted);line-height:1.4}
+.reg-body{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px;align-items:center}
+@media (max-width:760px){.reg-body{grid-template-columns:minmax(0,1fr)}}
+.reg-take{margin:0;padding:16px 18px;border-left:3px solid var(--fire);background:var(--fire-glow);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.5}
+.reg-take b{color:var(--fire);font-weight:600}
+
 /* faq */
 .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -505,6 +520,29 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="card reg">
+      <div class="reg-head">
+        <span class="tag">Пример региона · ХМАО–Югра · январь 2026</span>
+        <h3>Каждый второй пожар — из-за электрики, и все погибшие — до приезда пожарных</h3>
+      </div>
+      <div class="reg-grid">
+        <div class="rk"><span class="n">218</span><span class="l">пожаров за январь, +38% к январю 2025</span></div>
+        <div class="rk"><span class="n">51,8%</span><span class="l">из-за электрооборудования: 113 пожаров, +64% за год</span></div>
+        <div class="rk"><span class="n">4 из 4</span><span class="l">погибших — до прибытия пожарных; 3 из них не успели эвакуироваться, потому что спали</span></div>
+        <div class="rk"><span class="n">1,52 млрд ₽</span><span class="l">имущества спасено при прямом ущербе 14,9 млн ₽</span></div>
+      </div>
+      <div class="reg-body">
+        <div class="hbars">
+          <div class="hb"><span class="hl">Электрооборудование · 113</span><div class="tr"><div class="fl n" style="width:51.8%"></div><span class="bv">51,8%</span></div></div>
+          <div class="hb"><span class="hl">Транспорт · 37</span><div class="tr"><div class="fl o" style="width:17%"></div><span class="bv">17,0%</span></div></div>
+          <div class="hb"><span class="hl">Печи · 26</span><div class="tr"><div class="fl o" style="width:12%"></div><span class="bv">12,0%</span></div></div>
+          <div class="hb"><span class="hl">Неосторожное обращение с огнём · 26</span><div class="tr"><div class="fl o" style="width:11.9%"></div><span class="bv">11,9%</span></div></div>
+          <div class="hb"><span class="hl">Поджоги · 4</span><div class="tr"><div class="fl o" style="width:1.8%"></div><span class="bv">1,8%</span></div></div>
+        </div>
+        <p class="reg-take"><b>Вывод для объекта:</b> люди гибнут, когда пожар замечают поздно. Видеоаналитика поднимает тревогу на стадии дыма — раньше, чем огонь разгорится, — и даёт время на эвакуацию и тушение.</p>
+      </div>
+      <p class="note">Источник: ГУ МЧС России по ХМАО–Югре, статистические сведения за январь 2026 года. Один месяц и один регион — это пример, а не тренд по рынку.</p>
     </div>
     <p class="note">≈ — расчёт: число пожаров из-за электрики, делённое на их долю, или пятилетняя сумма, делённая на 5. Источники: ВНИИПО МЧС России, сборники 2021–2024; Вестник СПб университета ГПС МЧС, 2025; «Пожаровзрывобезопасность», 2022; МЧС России, статистика 2022.</p>
   </div>
