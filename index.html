@@ -229,8 +229,9 @@ input.p:focus{outline:none;border-bottom-color:var(--fire)}
 .pic img{display:block;width:100%;height:auto;border-radius:10px}
 
 /* hardware lineup */
-.hwl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-@media (max-width:900px){.hwl{grid-template-columns:minmax(0,1fr)}}
+.hwl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1100px){.hwl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.hwl{grid-template-columns:minmax(0,1fr)}}
 .hwc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .hwc.hot{border-color:var(--fire);box-shadow:0 0 0 1px var(--fire) inset}
 .hw-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -400,30 +401,36 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
   <div class="in">
     <div class="head">
       <span class="kicker">05 · Оборудование</span>
-      <h2>Видеокарта нужна не всегда: три уровня под размер объекта</h2>
-      <p class="lead">Для дыма и огня хватает 1–2 кадров в секунду с камеры, а фильтр движения включает нейросеть ещё реже. Поэтому малые объекты обслуживает мини-ПК без видеокарты.</p>
+      <h2>До 40 камер видеокарта не нужна</h2>
+      <p class="lead">Для дыма и огня хватает 1–2 кадров в секунду с камеры, а фильтр движения включает нейросеть ещё реже. Поэтому небольшие объекты обслуживает обычный компьютер, а видеокарта обязательна только от 40 камер.</p>
     </div>
     <div class="hwl">
       <div class="hwc">
-        <div class="hw-top"><span class="tag">Уровень 1 · старт</span><span class="hw-cams">до 16 камер</span></div>
-        <h3>Мини-ПК без видеокарты</h3>
-        <ul><li>Intel Core Ultra: процессор + встроенная графика + NPU</li><li>32 ГБ памяти, SSD 1 ТБ</li><li>Нейросеть через OpenVINO</li><li>Тихий, ставится в шкаф рядом с регистратором</li></ul>
-        <div class="hw-price"><span>60–90 тыс. ₽</span><small>малые склады, магазины, офисы</small></div>
+        <div class="hw-top"><span class="hw-cams">до 8 камер</span></div>
+        <h3>Офисный ПК</h3>
+        <ul><li>Процессор на 4–6 ядер</li><li>Видеокарта не нужна</li><li>Часто подходит компьютер, который у клиента уже есть</li></ul>
+        <div class="hw-price"><span>40–60 тыс. ₽</span><small>или 0 ₽, если ПК уже есть</small></div>
       </div>
       <div class="hwc">
-        <div class="hw-top"><span class="tag">Уровень 2 · особые случаи</span><span class="hw-cams">4–8 камер</span></div>
-        <h3>Edge-устройство</h3>
-        <ul><li>NVIDIA Jetson Orin Nano или Rockchip RK3588</li><li>Без вентилятора, 10–25 Вт</li><li>Для удалённых точек без серверной: АЗС, парковки, электрощитовые</li><li>Модель конвертируется под устройство отдельно</li></ul>
-        <div class="hw-price"><span>70–90 тыс. ₽</span><small>сейчас не дешевле мини-ПК из-за цен на память</small></div>
+        <div class="hw-top"><span class="hw-cams">8–20 камер</span></div>
+        <h3>8 ядер или мини-ПК</h3>
+        <ul><li>Процессор на 8 ядер и облегчённая INT8-модель</li><li>Или мини-ПК на Intel Core Ultra</li><li>Видеокарта не нужна</li></ul>
+        <div class="hw-price"><span>60–90 тыс. ₽</span><small>магазины, офисы, малые склады</small></div>
+      </div>
+      <div class="hwc">
+        <div class="hw-top"><span class="hw-cams">20–40 камер</span></div>
+        <h3>12–16 ядер или RTX 3050/3060</h3>
+        <ul><li>Мощный процессор на 12–16 ядер</li><li>Или недорогая видеокарта RTX 3050 / 3060</li><li>Выбор зависит от того, что выйдет дешевле на объекте</li></ul>
+        <div class="hw-price"><span>100–150 тыс. ₽</span><small>средние склады и производства</small></div>
       </div>
       <div class="hwc hot">
-        <div class="hw-top"><span class="tag">Уровень 3 · объект</span><span class="hw-cams">17–100+ камер</span></div>
-        <h3>Сервер с видеокартой NVIDIA</h3>
-        <ul><li>17–50 камер: RTX 5060 Ti 16 ГБ</li><li>51–100 камер: RTX 5080 / 5090</li><li>Аппаратный декодер видео разгружает процессор</li><li>Больше 100 камер — несколько видеокарт</li></ul>
-        <div class="hw-price"><span>170–230 тыс. ₽ / 300–450 тыс. ₽</span><small>заводы, большие склады, ТЦ</small></div>
+        <div class="hw-top"><span class="hw-cams">больше 40 камер</span></div>
+        <h3>Сервер с видеокартой</h3>
+        <ul><li>Видеокарта обязательна</li><li>Аппаратный декодер видео разгружает процессор</li><li>Больше 100 камер — несколько видеокарт или серверов</li></ul>
+        <div class="hw-price"><span>от 170 тыс. ₽</span><small>заводы, большие склады, ТЦ</small></div>
       </div>
     </div>
-    <p class="note">Цены ориентировочные, на октябрь 2026 года. Число камер — оценка для 1–2 кадров в секунду на камеру; точная цифра для каждого уровня проверяется тестом на реальных потоках. Калькулятор ниже подбирает уровень по числу камер.</p>
+    <p class="note">Цены ориентировочные, на октябрь 2026 года. Калькулятор ниже подбирает конфигурацию по числу камер.</p>
   </div>
 </section>
 
@@ -724,10 +731,11 @@ let hw = 'supply', years = 3;
 const DEV = 28000 * 4 + 1000 * 88, MARGIN = 0.8, AICAM = 50000;
 
 function plan(c){
-  if (c <= 16) return {name:'Мини-ПК Intel Core Ultra', lo:60000, hi:90000, lvl:'уровень 1, без видеокарты'};
-  if (c <= 50) return {name:'Сервер RTX 5060 Ti 16 ГБ', lo:170000, hi:230000, lvl:'уровень 3'};
+  if (c <= 8)  return {name:'Офисный ПК, 4–6 ядер', lo:40000, hi:60000, lvl:'без видеокарты'};
+  if (c <= 20) return {name:'8 ядер или мини-ПК Core Ultra', lo:60000, hi:90000, lvl:'без видеокарты'};
+  if (c <= 40) return {name:'12–16 ядер или RTX 3050/3060', lo:100000, hi:150000, lvl:'видеокарта по желанию'};
   const g = Math.ceil(c/100);
-  return g === 1 ? {name:'Сервер RTX 5080 / 5090', lo:300000, hi:450000, lvl:'уровень 3'} : {name: g + ' × сервер RTX 5080 / 5090', lo:g*300000, hi:g*450000, lvl:'уровень 3'};
+  return g === 1 ? {name:'Сервер с видеокартой', lo:170000, hi:300000, lvl:'видеокарта обязательна'} : {name: g + ' × сервер с видеокартой', lo:g*170000, hi:g*300000, lvl:'видеокарта обязательна'};
 }
 function calc(){
   const c = Math.max(1, Math.round(+$('camsNum').value || 1));
