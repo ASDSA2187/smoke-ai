@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Smoke AI Platform — AI-обнаружение дыма и огня через уже установленные камеры.">
-<title>Smoke AI Platform</title>
+<meta name="description" content="Prometei — AI-обнаружение дыма и огня через уже установленные камеры.">
+<title>Prometei</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -284,7 +284,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#s1">Smoke <span>AI</span></a>
+    <a class="brand" href="#s1">Prome<span>tei</span></a>
     <nav class="nav" aria-label="Разделы">
       <a href="#s1"><b>01</b>Суть</a>
       <a href="#how"><b>02</b>Как работает</a>
@@ -379,7 +379,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
         <ul><li>высокая точность, готовое решение</li><li>нужно менять все камеры</li><li>долгий и сложный монтаж</li></ul>
       </div>
       <div class="card us">
-        <span class="tag">Smoke AI</span>
+        <span class="tag">Prometei</span>
         <span class="big">≈ 300 тыс. ₽</span>
         <span>AI-сервер на существующих камерах, плюс подписка</span>
         <ul><li>работает с любыми IP-камерами</li><li>ставится за 1–2 дня</li><li>один сервер на десятки камер</li></ul>
@@ -457,7 +457,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
       </div>
       <div class="card">
         <span class="tag">Первый этап</span>
-        <h3>Камера → AI Smoke Detector → Тревога → Telegram</h3>
+        <h3>Камера → нейросеть Prometei → Тревога → Telegram</h3>
         <p style="margin:0;color:var(--muted)">Не делаем сразу большую систему. Берём готовую модель YOLO, дообучаем её на дыме и огне, подключаем RTSP-камеры и отправляем тревоги в Telegram.</p>
         <div class="road">
           <div class="step"><span class="when">Результат</span><div><span class="ver">Работающий прототип</span><p>Можно показать клиенту и интегратору на реальных камерах.</p></div></div>
@@ -604,10 +604,10 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
           </div>
           <div class="bars">
             <div class="br"><span>AI-камеры</span><div class="tr"><div class="fl o" id="bO"></div><span class="bv" id="vO"></span></div></div>
-            <div class="br"><span>Smoke AI</span><div class="tr"><div class="fl n" id="bN"></div><span class="bv" id="vN"></span></div></div>
+            <div class="br"><span>Prometei</span><div class="tr"><div class="fl n" id="bN"></div><span class="bv" id="vN"></span></div></div>
           </div>
           <div class="verdict" id="verdict"></div>
-          <p class="note">AI-камеры: 50 000 ₽ за штуку, без монтажа. Smoke AI: сервер (середина диапазона) плюс подписка за весь срок. Окупаемость MVP: 200 тыс. ₽ (оклад за 4 мес + обучение нейросети 88 дней × 1 000 ₽) делим на прибыль с объекта при марже 80%.</p>
+          <p class="note">AI-камеры: 50 000 ₽ за штуку, без монтажа. Prometei: сервер (середина диапазона) плюс подписка за весь срок. Окупаемость MVP: 200 тыс. ₽ (оклад за 4 мес + обучение нейросети 88 дней × 1 000 ₽) делим на прибыль с объекта при марже 80%.</p>
         </div>
       </div>
     </div>
@@ -720,7 +720,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
   </div>
 </section>
 </main>
-<footer>Smoke AI Platform · AI-слой пожарной безопасности для существующих камер</footer>
+<footer>Prometei · AI-слой пожарной безопасности для существующих камер</footer>
 
 <script>
 const $ = id => document.getElementById(id);
@@ -763,7 +763,7 @@ function calc(){
   const d = oldC - newC;
   $('verdict').innerHTML = d > 0
     ? 'За ' + years + ' ' + yw(years) + ' клиент сэкономит <b>' + fmt(d) + '</b> (' + Math.round(d/oldC*100) + '%) по сравнению с заменой камер.'
-    : 'За ' + years + ' ' + yw(years) + ' Smoke AI выйдет дороже замены камер на <b>' + fmt(-d) + '</b>: подписка за весь срок больше цены AI-камер.';
+    : 'За ' + years + ' ' + yw(years) + ' Prometei выйдет дороже замены камер на <b>' + fmt(-d) + '</b>: подписка за весь срок больше цены AI-камер.';
 }
 $('camsRange').addEventListener('input', e => { $('camsNum').value = e.target.value; calc(); });
 $('camsNum').addEventListener('input', e => { $('camsRange').value = Math.min(500, Math.max(1, +e.target.value || 1)); calc(); });
