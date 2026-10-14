@@ -259,6 +259,33 @@ input.p:focus{outline:none;border-bottom-color:var(--fire)}
 .reg-take{margin:0;padding:16px 18px;border-left:3px solid var(--fire);background:var(--fire-glow);border-radius:0 10px 10px 0;font-size:15.5px;line-height:1.5}
 .reg-take b{color:var(--fire);font-weight:600}
 
+/* partners */
+h3.sub{font:600 clamp(22px,2.6vw,28px)/1.2 var(--f-display);margin:0}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.roles{grid-template-columns:minmax(0,1fr)}}
+.role{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.role.own{border-color:var(--fire);background:var(--fire-glow)}
+.role .tag{font:500 12px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--fire)}
+.rel{margin:auto 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:14px;color:var(--ink);font-weight:500}
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.chk li{position:relative;padding-left:24px;font-size:15px;color:var(--muted);line-height:1.45}
+.chk li::before{content:"✓";position:absolute;left:0;top:0;color:var(--fire);font-weight:600}
+.kd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:760px){.kd{grid-template-columns:minmax(0,1fr)}}
+.kd-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:480px){.kd-in{grid-template-columns:minmax(0,1fr)}}
+.kd-in input{font:500 16px var(--f-mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;color-scheme:dark}
+.kd-in label{text-transform:none!important;letter-spacing:0!important;font:500 13px var(--f-body)!important}
+.kd-out{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:2px}
+.kd-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.kd-row b{font:600 17px var(--f-display);font-variant-numeric:tabular-nums}
+.kd-msg{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500}
+.kd-msg.ok{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.kd-msg.bad{background:rgba(229,99,79,.16);color:#F08A78}
+.checked{border:1px dashed var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.checked .tag{font:500 12px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--good)}
+.checked .chk li::before{color:var(--good)}
+
 /* faq */
 .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -627,6 +654,75 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
       <div class="card"><span class="tag">Охранные компании</span><h3>Быстрее реакция на возгорание</h3></div>
       <div class="card"><span class="tag">Пожарные интеграторы</span><h3>Обнаружение раньше, чем сработает датчик</h3></div>
     </div>
+    <div class="head" style="gap:10px;margin-top:8px">
+      <h3 class="sub">Партнёрский кабинет: дилер и агент</h3>
+      <p class="lead">Каждый партнёр видит только своих клиентов: их карту, журнал, лицензии и отчёт. Чужие объекты, ключ подписи, ваши заметки и свою скидку он не видит.</p>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <span class="tag">Дилер</span>
+        <h3>Покупает запас и сам выпускает ключи</h3>
+        <ul class="chk">
+          <li>Работает с запасом камеро-месяцев: 1 камера на 1 месяц — одна единица</li>
+          <li>Сам выпускает ключи на 1–24 месяца, запас списывается сразу</li>
+          <li>До нажатия кнопки видит, сколько спишется и сколько останется</li>
+          <li>Если запаса не хватает, ключ не выпустится</li>
+          <li>Продление считается от текущей даты окончания — оплаченные дни не теряются</li>
+        </ul>
+        <p class="rel">Расчёт с дилером — за запас</p>
+      </div>
+      <div class="role">
+        <span class="tag">Агент</span>
+        <h3>Приводит клиентов, ключи выпускаете вы</h3>
+        <ul class="chk">
+          <li>Подключает объекты своих клиентов</li>
+          <li>Сам ключ выпустить не может</li>
+          <li>Видит карту, журнал и лицензии своих клиентов</li>
+        </ul>
+        <p class="rel">Расчёт с агентом — вознаграждение по отчёту</p>
+      </div>
+      <div class="role own">
+        <span class="tag">Только у вас</span>
+        <h3>Контроль остаётся у владельца</h3>
+        <ul class="chk">
+          <li>Пополнение запаса дилера кнопкой «Пополнить» с номером оплаченного счёта</li>
+          <li>Отзыв лицензий</li>
+          <li>Удаление объектов с выпущенными лицензиями</li>
+          <li>Приостановка партнёра — сразу закрывает вход всем его сотрудникам</li>
+        </ul>
+        <p class="rel">Отчёт по выпускам за период — по партнёрам и объектам, в камеро-месяцах, выгрузка в CSV</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag">Пример: дилер выпускает ключ</span>
+      <div class="kd">
+        <form class="kd-in" onsubmit="return false">
+          <div class="f"><label for="kdStock">Запас дилера, камеро-мес.</label><input type="number" id="kdStock" value="500" min="0"></div>
+          <div class="f"><label for="kdCams">Камер на объекте</label><input type="number" id="kdCams" value="12" min="1"></div>
+          <div class="f"><label for="kdMonths">Срок ключа, мес. (1–24)</label><input type="number" id="kdMonths" value="6" min="1" max="24"></div>
+          <div class="f"><label for="kdFrom">Ключ действует до (для продления) или сегодня</label><input type="date" id="kdFrom"></div>
+        </form>
+        <div class="kd-out" aria-live="polite">
+          <div class="kd-row"><span>Спишется</span><b id="kdUse">—</b></div>
+          <div class="kd-row"><span>Останется в запасе</span><b id="kdLeft">—</b></div>
+          <div class="kd-row"><span>Ключ будет действовать до</span><b id="kdEnd">—</b></div>
+          <div class="kd-msg" id="kdMsg"></div>
+        </div>
+      </div>
+      <p class="note">Пример для наглядности, считается в браузере. Если дата окончания приходится на день, которого нет в месяце (31 января + 1 мес.), берётся последний день месяца.</p>
+    </div>
+
+    <div class="checked">
+      <span class="tag">Проверено на тестах</span>
+      <ul class="chk">
+        <li>Партнёр не видит и не трогает чужие объекты, лицензии и пользователей</li>
+        <li>Списание идёт правильно, в том числе для ключей, оформленных 31 января и 29 февраля</li>
+        <li>При нехватке запаса выпуск не проходит; агент сам ключ не выпустит</li>
+        <li>База Центра 0.2 обновляется автоматически, прежние объекты остаются «напрямую»</li>
+      </ul>
+    </div>
+
     <div class="risks">
       <div class="risk"><span class="r">Ложные тревоги</span><span class="s"><b>Решение:</b> нейросеть, анализ во времени, фильтрация</span></div>
       <div class="risk"><span class="r">Сильные конкуренты</span><span class="s"><b>Решение:</b> не делать VMS, быть модулем для всех систем</span></div>
@@ -772,6 +868,28 @@ document.querySelectorAll('#hz button').forEach(b => b.addEventListener('click',
 ['t1','t2','t3'].forEach(id => $(id).addEventListener('input', calc));
 calc();
 
+
+(function(){
+  const pad=n=>String(n).padStart(2,'0');
+  const today=new Date(); const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  $('kdFrom').value=iso(today);
+  function addMonths(d,m){const y=d.getFullYear(),mo=d.getMonth()+m,day=d.getDate();const last=new Date(y,mo+1,0).getDate();return new Date(y,mo,Math.min(day,last));}
+  function kd(){
+    const stock=Math.max(0,Math.floor(+$('kdStock').value||0)), cams=Math.max(1,Math.floor(+$('kdCams').value||1));
+    let m=Math.floor(+$('kdMonths').value||1); m=Math.min(24,Math.max(1,m));
+    const base=$('kdFrom').value?new Date($('kdFrom').value+'T00:00:00'):today;
+    const start=base<today?today:base;
+    const use=cams*m, left=stock-use, end=addMonths(start,m);
+    $('kdUse').textContent=use.toLocaleString('ru-RU')+' камеро-мес.';
+    $('kdLeft').textContent=left>=0?left.toLocaleString('ru-RU'):'—';
+    $('kdEnd').textContent=left>=0?pad(end.getDate())+'.'+pad(end.getMonth()+1)+'.'+end.getFullYear():'—';
+    const msg=$('kdMsg');
+    if(left<0){msg.className='kd-msg bad';msg.textContent='Запаса не хватает: нужно '+use+', есть '+stock+'. Ключ не выпустится — нужно пополнение.';}
+    else{msg.className='kd-msg ok';msg.textContent=cams+' камер × '+m+' мес. — ключ можно выпустить.';}
+  }
+  ['kdStock','kdCams','kdMonths','kdFrom'].forEach(id=>$(id).addEventListener('input',kd));
+  kd();
+})();
 const links = [...document.querySelectorAll('.nav a')];
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
