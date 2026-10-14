@@ -216,6 +216,56 @@ input.p:focus{outline:none;border-bottom-color:var(--fire)}
 .st small{color:var(--dim)}
 .nd{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px dashed var(--dim);color:var(--muted)}
 
+/* architecture */
+.arch{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr) minmax(0,.75fr);gap:14px;align-items:start}
+@media (max-width:1060px){.arch{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.z1{grid-column:1/-1}}
+@media (max-width:640px){.arch{grid-template-columns:minmax(0,1fr)}}
+.zone{border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);min-width:0}
+.z1{background:rgba(127,167,217,.07)} .z2{background:rgba(111,195,154,.07)} .z3{background:rgba(167,139,250,.08)}
+.zh{display:flex;gap:12px;align-items:center}
+.zh div{display:flex;flex-direction:column;min-width:0}
+.zh b{font:600 17px var(--f-display)} .zh span{font-size:13px;color:var(--muted)}
+.zn{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:600 15px var(--f-display);color:#0B1422}
+.z1 .zn{background:#7FA7D9} .z2 .zn{background:var(--good)} .z3 .zn{background:#A78BFA}
+.zrow{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr) minmax(0,.9fr);gap:10px;align-items:start}
+@media (max-width:760px){.zrow{grid-template-columns:minmax(0,1fr)}}
+.zsrc{display:flex;flex-direction:column;gap:10px}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.box.opt{border-style:dashed}
+.box b{font:600 14px/1.3 var(--f-display)} .box span{font-size:12.5px;color:var(--muted);line-height:1.35}
+.box code,.mods code,.steps code{font:500 12px var(--f-mono);color:var(--fire)}
+.srv{border-color:#7FA7D9}
+.mods{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.mods li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:6px;font-size:13px;line-height:1.35;padding:6px 8px;border-radius:6px;background:var(--panel)}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.flows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+@media (max-width:1000px){.flows{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:640px){.flows{grid-template-columns:minmax(0,1fr)}}
+.fcol{display:flex;flex-direction:column;gap:14px;min-width:0}
+.flow{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:4px 4px 14px 14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.fa{--c:#E5634F} .fb{--c:#7FA7D9} .fv{--c:#A78BFA} .fg{--c:var(--good)}
+.fh{display:flex;gap:12px;align-items:center}
+.fh div{display:flex;flex-direction:column;min-width:0}
+.fh b{font:600 17px var(--f-display)} .fh span{font-size:13px;color:var(--muted)}
+.fl-l{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#0B1422;font:700 15px var(--f-display)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.steps li{display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.4}
+.steps li:last-child{border-bottom:none}
+.steps i{grid-row:span 2;font:600 12px var(--f-mono);font-style:normal;color:var(--c);padding-top:1px}
+.steps span{color:var(--muted)}
+
+/* legal */
+.legal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.legal{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:560px){.legal{grid-template-columns:minmax(0,1fr)}}
+.lc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.lc.hot{border-color:var(--fire);background:var(--fire-glow)}
+.ln{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);font:600 14px var(--f-mono);color:var(--fire)}
+.lc.hot .ln{background:var(--fire);color:#1A0E06;border-color:var(--fire)}
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.chk li{position:relative;padding-left:24px;font-size:15px;color:var(--muted);line-height:1.45}
+.chk li::before{content:"✓";position:absolute;left:0;top:0;color:var(--fire);font-weight:600}
+
 /* faq */
 .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -245,14 +295,16 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
     <nav class="nav" aria-label="Разделы">
       <a href="#s1"><b>01</b>Суть</a>
       <a href="#how"><b>02</b>Как работает</a>
-      <a href="#s2"><b>03</b>Почему так</a>
-      <a href="#s3"><b>04</b>MVP</a>
-      <a href="#stat"><b>05</b>Статистика</a>
-      <a href="#s4"><b>06</b>Экономика</a>
-      <a href="#s5"><b>07</b>Рынок</a>
-      <a href="#plan"><b>08</b>План</a>
-      <a href="#faq"><b>09</b>Вопросы</a>
-      <a href="#itog"><b>10</b>Итог</a>
+      <a href="#arch"><b>03</b>Архитектура</a>
+      <a href="#s2"><b>04</b>Почему так</a>
+      <a href="#s3"><b>05</b>MVP</a>
+      <a href="#stat"><b>06</b>Статистика</a>
+      <a href="#s4"><b>07</b>Экономика</a>
+      <a href="#s5"><b>08</b>Рынок</a>
+      <a href="#plan"><b>09</b>План</a>
+      <a href="#legal"><b>10</b>Договор</a>
+      <a href="#faq"><b>11</b>Вопросы</a>
+      <a href="#itog"><b>12</b>Итог</a>
     </nav>
   </div>
 </header>
@@ -309,10 +361,133 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
   </div>
 </section>
 
+<section id="arch">
+  <div class="in">
+    <div class="head">
+      <span class="kicker">03 · Архитектура</span>
+      <h2>Видео остаётся на объекте, в центр уходит только текст</h2>
+      <p class="lead">Обнаружение работает внутри сети клиента даже без интернета. Prometei Центр на VPS в России ведёт мониторинг, счета и лицензии и не получает видео.</p>
+    </div>
+
+    <div class="arch">
+      <div class="zone z1">
+        <div class="zh"><span class="zn">1</span><div><b>Объект клиента</b><span>локальная сеть, у каждого клиента своя</span></div></div>
+        <div class="zrow">
+          <div class="zsrc">
+            <div class="box"><code>K1</code><b>IP-камеры</b><span>Hikvision, Dahua и др.</span></div>
+            <div class="box"><code>K2</code><b>Видеорегистратор</b><span>если есть</span></div>
+          </div>
+          <div class="box srv">
+            <code>O1</code><b>Сервер Prometei</b><span>с видеокартой NVIDIA</span>
+            <ol class="mods">
+              <li><code>O1.1</code>Приём видео (RTSP, TCP/UDP)</li>
+              <li><code>O1.2</code>Фильтр движения</li>
+              <li><code>O1.3</code>Нейросеть D-FINE (дым / огонь)</li>
+              <li><code>O1.4</code>Проверка динамики: дым ≥ 6 с, огонь ≥ 2 с</li>
+              <li><code>O1.5</code>Модуль тревог: событие, снимок, клип</li>
+              <li><code>O1.6</code>Проверка лицензии: открытый ключ, код сервера</li>
+              <li><code>O1.7</code>Агент связи с центром</li>
+              <li><code>O1.8</code>Локальное хранилище: снимки, клипы, журнал</li>
+            </ol>
+          </div>
+          <div class="zsrc">
+            <div class="box"><code>O2</code><b>Терминал охраны</b><span>браузер</span></div>
+            <div class="box"><code>O3</code><b>Почта ответственных лиц</b></div>
+            <div class="box opt"><code>O4</code><b>Telegram</b><span>необязательно, при наличии VPN</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="zone z2">
+        <div class="zh"><span class="zn">2</span><div><b>Prometei Центр</b><span>VPS в России, HTTPS, без видеокарты</span></div></div>
+        <div class="cgrid">
+          <div class="box"><code>C1</code><b>Приём данных от объектов</b><span>API объектов</span></div>
+          <div class="box"><code>C2</code><b>Карта объектов и журнал тревог</b><span>только текст</span></div>
+          <div class="box"><code>C3</code><b>Модуль биллинга</b><span>счета, сверка оплат</span></div>
+          <div class="box"><code>C4</code><b>Модуль лицензий</b><span>секретный ключ, подпись</span></div>
+          <div class="box"><code>C5</code><b>Планировщик</b><span>напоминания, автосчета</span></div>
+          <div class="box"><code>C6</code><b>Почтовый модуль</b><span>счета, уведомления, лицензии</span></div>
+          <div class="box"><code>C7</code><b>Пульт владельца</b><span>браузер</span></div>
+          <div class="box"><code>C8</code><b>Очередь ручной проверки</b><span>проблемные оплаты</span></div>
+        </div>
+      </div>
+
+      <div class="zone z3">
+        <div class="zh"><span class="zn">3</span><div><b>Внешние участники</b><span>банки, бухгалтерия, документы</span></div></div>
+        <div class="zsrc">
+          <div class="box"><code>B1</code><b>Бухгалтерия клиента</b><span>юрлицо</span></div>
+          <div class="box"><code>B2</code><b>Банк клиента</b></div>
+          <div class="box"><code>B3</code><b>Ваш банк</b><span>Т-Банк / Точка / Модульбанк, API выписки</span></div>
+          <div class="box opt"><code>B4</code><b>ЭДО</b><span>закрывающие документы</span></div>
+          <div class="box"><code>B5</code><b>Владелец</b><span>вы</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flows">
+      <div class="flow fa">
+        <div class="fh"><span class="fl-l">А</span><div><b>Обнаружение пожара</b><span>внутри объекта, без интернета</span></div></div>
+        <ol class="steps">
+          <li><i>1</i><code>K1 / K2 → O1.1</code><span>видеопоток</span></li>
+          <li><i>2</i><code>O1.1 → O1.2</code><span>кадры</span></li>
+          <li><i>3</i><code>O1.2 → O1.3</code><span>кадры + контрольный кадр</span></li>
+          <li><i>4</i><code>O1.6 → O1.3</code><span>проверка лицензии</span></li>
+          <li><i>5</i><code>O1.3 → O1.4</code><span>дым / огонь + уверенность</span></li>
+          <li><i>6</i><code>O1.4 → O1.5</code><span>подтверждённая тревога</span></li>
+          <li><i>7</i><code>O1.5 → O1.8</code><span>снимок, клип, журнал</span></li>
+          <li><i>8</i><code>O1.5 → O2</code><span>тревога на пост охраны</span></li>
+          <li><i>9</i><code>O1.5 → O3</code><span>письмо по SMTP</span></li>
+          <li><i>10</i><code>O1.5 → O4</code><span>сообщение в Telegram, опц.</span></li>
+          <li><i>11</i><code>O2 → O1.5</code><span>подтвердить / ложная</span></li>
+          <li><i>12</i><code>O1.5 → O3, O4</code><span>эскалация, если не подтверждена за 3 мин</span></li>
+        </ol>
+      </div>
+      <div class="fcol">
+        <div class="flow fb">
+          <div class="fh"><span class="fl-l">Б</span><div><b>Мониторинг</b><span>объект → центр, только текст</span></div></div>
+          <ol class="steps">
+            <li><i>13</i><code>O1.7 → C1</code><span>статус сервера и камер, раз в 3 мин</span></li>
+            <li><i>14</i><code>O1.7 → C1</code><span>тревоги и статусы: время, камера, тип, уверенность, оператор</span></li>
+            <li><i>15</i><code>C1 → C2</code><span>обновление карты и журнала</span></li>
+            <li><i>16</i><code>C2 → C7</code><span>владелец видит все объекты, тревоги и состояние</span></li>
+          </ol>
+        </div>
+        <div class="flow fg">
+          <div class="fh"><span class="fl-l">Г</span><div><b>Подключение нового объекта</b><span>один раз</span></div></div>
+          <ol class="steps">
+            <li><i>33</i><code>B5 → C7 → C2</code><span>создать объект и получить код PRM-XXXX-X</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="flow fv">
+        <div class="fh"><span class="fl-l">В</span><div><b>Оплата и выдача лицензии</b><span>центр ↔ банк → объект</span></div></div>
+        <ol class="steps">
+          <li><i>17</i><code>C5 → C3</code><span>счёт за 30/14/7 дней или B5 → C7 → C3</span></li>
+          <li><i>18</i><code>C3 → C6</code><span>счёт PDF: номер, ИНН, камеры</span></li>
+          <li><i>19</i><code>C6 → B1</code><span>письмо бухгалтерии</span></li>
+          <li><i>20</i><code>B1 → B2</code><span>платёжное поручение</span></li>
+          <li><i>21</i><code>B2 → B3</code><span>перевод денег</span></li>
+          <li><i>22</i><code>B3 → C3</code><span>сведения о поступлении</span></li>
+          <li><i>23</i><code>C3 → C3</code><span>сверка: номер + ИНН + сумма. Сошлось — шаг 24; не сошлось — C8 → C7, владелец сопоставляет</span></li>
+          <li><i>24</i><code>C3 → C4</code><span>выпустить / продлить ключи</span></li>
+          <li><i>25</i><code>C4 → C4</code><span>подпись лицензии, привязка к коду</span></li>
+          <li><i>26</i><code>C1 → O1.7</code><span>лицензия, до 1 мин</span></li>
+          <li><i>27</i><code>O1.7 → O1.6</code><span>проверка подписи, установка</span></li>
+          <li><i>28</i><code>O1.6 → O1.3</code><span>анализ продолжается</span></li>
+          <li><i>29</i><code>O1.7 → C1</code><span>лицензия получена</span></li>
+          <li><i>30</i><code>C6 → B1</code><span>и ответственным: оплата получена, лицензия продлена до …</span></li>
+          <li><i>31</i><code>C1 → B4</code><span>акт / УПД в ЭДО, опц.</span></li>
+          <li><i>32</i><code>C3 → C7</code><span>оплаты, долги, истекающие лицензии</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="s2">
   <div class="in">
     <div class="head">
-      <span class="kicker">03 · Почему так</span>
+      <span class="kicker">04 · Почему так</span>
       <h2>Не меняем камеры — добавляем модуль к тому, что есть</h2>
     </div>
     <div class="vs">
@@ -344,7 +519,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="s3">
   <div class="in">
     <div class="head">
-      <span class="kicker">04 · MVP</span>
+      <span class="kicker">05 · MVP</span>
       <h2>Один разработчик, рабочий прототип за 3–4 месяца</h2>
     </div>
     <div class="mvp">
@@ -379,7 +554,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="stat">
   <div class="in">
     <div class="head">
-      <span class="kicker">05 · Статистика пожаров</span>
+      <span class="kicker">06 · Статистика пожаров</span>
       <h2>В нежилых зданиях главная причина пожаров — электрика, и её доля растёт</h2>
       <p class="lead">Данные МЧС России и ВНИИПО. Короткие замыкания и перегрев начинаются с тления и дыма — это то, что видит камера раньше, чем срабатывает датчик.</p>
     </div>
@@ -442,7 +617,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="s4">
   <div class="in">
     <div class="head">
-      <span class="kicker">06 · Экономика</span>
+      <span class="kicker">07 · Экономика</span>
       <h2>Подписка за каждую камеру</h2>
       <p class="lead" id="econLead">Объект на 100 камер приносит 50 000 ₽ в месяц, 600 000 ₽ в год, при маржинальности 70–90%.</p>
     </div>
@@ -501,7 +676,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="s5">
   <div class="in">
     <div class="head">
-      <span class="kicker">07 · Выход на рынок</span>
+      <span class="kicker">08 · Выход на рынок</span>
       <h2>Продаём через интеграторов, а не сами</h2>
       <p class="lead">У интеграторов уже есть камеры, клиенты, монтажники и доверие. Одному человеку не нужен отдел продаж.</p>
     </div>
@@ -522,7 +697,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="plan">
   <div class="in">
     <div class="head">
-      <span class="kicker">08 · План развития</span>
+      <span class="kicker">09 · План развития</span>
       <h2>От прототипа к сети внедрений за 12 месяцев</h2>
     </div>
     <ol class="timeline">
@@ -549,10 +724,41 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
   </div>
 </section>
 
+<section id="legal">
+  <div class="in">
+    <div class="head">
+      <span class="kicker">10 · Договор и данные</span>
+      <h2>Юридическая схема работы с клиентом</h2>
+    </div>
+    <div class="legal">
+      <div class="lc">
+        <span class="ln">1</span><h3>Лицензионный договор с клиентом</h3>
+        <ul class="chk"><li>Право использования программного продукта</li><li>Срок действия лицензии</li><li>Привязка к серверу: конкретному оборудованию или инстансу</li></ul>
+      </div>
+      <div class="lc">
+        <span class="ln">2</span><h3>Поручение на обработку персональных данных</h3>
+        <ul class="chk"><li>Видео хранится у клиента</li><li>В центр уходит только текст, без передачи видео</li></ul>
+      </div>
+      <div class="lc">
+        <span class="ln">3</span><h3>Указание авторов FASDD в документации</h3>
+        <ul class="chk"><li>Условие лицензии CC BY 4.0</li><li>Пункт в документации обязателен</li></ul>
+      </div>
+      <div class="lc hot">
+        <span class="ln">4</span><h3>Оговорка: дополнение, а не замена</h3>
+        <ul class="chk"><li>Prometei дополняет, но не заменяет сертифицированную пожарную сигнализацию</li><li>Это защищает вас при разборе инцидентов</li></ul>
+      </div>
+      <div class="lc">
+        <span class="ln">5</span><h3>Регистрация в реестре российского ПО</h3>
+        <ul class="chk"><li>По желанию, на перспективу</li><li>Даёт преимущество в закупках по 44-ФЗ и 223-ФЗ</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="faq">
   <div class="in">
     <div class="head">
-      <span class="kicker">09 · Вопросы</span>
+      <span class="kicker">11 · Вопросы</span>
       <h2>Частые вопросы про выявление дыма и пожара</h2>
     </div>
     <div class="faq">
@@ -575,7 +781,7 @@ footer{padding:32px 20px 48px;text-align:center;color:var(--dim);font-size:14px}
 <section id="itog">
   <div class="in">
     <div class="head">
-      <span class="kicker">10 · Итог</span>
+      <span class="kicker">12 · Итог</span>
       <h2>Итоговая оценка проекта</h2>
     </div>
     <div class="sum">
